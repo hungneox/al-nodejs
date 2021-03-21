@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+
+const host = "localhost";
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,5 +14,5 @@ const apiRouter = require('./api/router');
 app.use(apiRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server is listening at http://${host}:${port}`);
 });
