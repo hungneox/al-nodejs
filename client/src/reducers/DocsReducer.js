@@ -7,18 +7,18 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_ACTIONS_SUCCESS:
-      console.log('REduceer', { ...state, actions: action.payload });
+      console.log('FETCH_ACTIONS_SUCCESS', { ...state, actions: action.payload });
       return { ...state, actions: action.payload };
 
     case FETCH_ACTIONS_FAILURE:
       return state;
 
     case ADD_ACTION:
-      console.log('Add action', { ...state, actions: [...state.actions, action.payload] });
+      console.log('ADD_ACTION', { ...state, actions: [...state.actions, action.payload] });
       return { ...state, actions: [...state.actions, action.payload] };
 
     case DELETE_ACTION:
-      console.log('DELETE action', { ...state, actions: state.actions.filter((act) => act._id !== action.payload) });
+      console.log('DELETE_ACTION', { ...state, actions: state.actions.filter((act) => act._id !== action.payload) });
       return { ...state, actions: state.actions.filter((act) => act._id !== action.payload._id) };
 
     default:

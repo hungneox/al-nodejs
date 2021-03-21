@@ -10,7 +10,7 @@ class ListDoc extends Component {
   }
   render() {
     let { actions } = this.props.docs;
-    return actions.map((act) => <DocItem key={act._id} id={act._id} text={act.action} />);
+    return actions.map((act) => <DocItem key={act.id} id={act.id} text={act.content} />);
   }
 }
 

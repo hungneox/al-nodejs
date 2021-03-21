@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import socket from 'socket.io';
+import cors from 'cors';
 import apiRouter from './api';
 
 const app = express();
@@ -12,18 +13,14 @@ const port = process.env.PORT || 8080;
 const server = http.Server(app);
 const io = socket(server);
 
+// allow-cors
+app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
-// allow-cors
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-app.use(apiRouter);
+app.use('/api', apiRouter);
 
 // catch 404
 app.use((req, res, next) => {

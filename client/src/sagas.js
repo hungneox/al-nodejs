@@ -10,16 +10,18 @@ import {
 } from './actions/constants';
 import axios from 'axios';
 
+const API_SERVER = 'http://localhost:8080';
+
 function fetchActionsFromApi() {
-  return axios.get('/api/docs');
+  return axios.get(`${API_SERVER}/api/docs`);
 }
 
 function addActionToDatabase(text) {
-  return axios.post('/api/docs', { action: text });
+  return axios.post(`${API_SERVER}/api/docs`, { action: text });
 }
 
 function deleteActionFromDatabase(id) {
-  return axios.delete(`/api/docs/${id}`);
+  return axios.delete(`${API_SERVER}/api/docs/${id}`);
 }
 
 function* fetchActions() {
