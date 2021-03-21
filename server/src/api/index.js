@@ -1,4 +1,6 @@
+import { json } from 'body-parser';
 import express from 'express';
+import db from './db';
 
 const router = express.Router();
 
@@ -9,31 +11,22 @@ router.get('/ping', function (req, res) {
 
 router.get('/docs', async (req, res, next) => {
   try {
-    // return success(res, docs);
-    res.json([
-      {
-        id: 1,
-        content: "Hello World",
-      },
-      {
-        id: 2,
-        content: "Hello World 1",
-      },
-      {
-        id: 3,
-        content: "Hello World 2",
-      }
-    ])
+    db.all('select * from docs', (error, rows) => {
+      res.json(rows);
+    });
   } catch (err) {
     next({ status: 400, message: 'failed to get docs' });
   }
 });
 
-router.post('/docs', async (req, res, next) => {
-  try {
-  } catch (err) {
-    next({ status: 400, message: 'failed to create docs' });
-  }
+router.post('/docs', (req, res, next) => {
+  const { author, content } = req.body;
+  db.run(`INSERT INTO docs(author, content) VALUES(?, ?)`, [author, content], function (error) {
+    if (error) {
+      next({ status: 400, message: 'failed to create docs' });
+    }
+  });
+  res.send({ content });
 });
 
 router.put('/docs/:id', async (req, res, next) => {
