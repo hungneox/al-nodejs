@@ -25,27 +25,33 @@ const StyledButton = styled.button`
   margin-left: 10px;
 `;
 
+const StyledTextarea = styled.textarea`
+  width: 100%;
+`;
+
 class AddDoc extends Component {
   state = {
-    text: '',
+    title: '',
   };
 
-  handleChange = (e) => {
+  handleTitleChange = (e) => {
     this.setState({
-      text: e.target.value,
+      title: e.target.value,
     });
   };
 
+  handleContentChange = (e) => {};
+
   onAddClicked = () => {
-    console.log('Add', this.state.text);
+    console.log('Add', this.state.title);
     //Dispatch Action
-    this.props.add_action(this.state.text);
+    this.props.add_action(this.state.title);
   };
 
   render() {
     return (
       <OuterWrapper>
-        <StyledInput onChange={this.handleChange} />
+        <StyledInput onChange={this.handleTitleChange} />
         <StyledButton onClick={this.onAddClicked}>Add</StyledButton>
       </OuterWrapper>
     );

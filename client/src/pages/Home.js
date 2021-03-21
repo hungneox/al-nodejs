@@ -18,7 +18,7 @@ const Heading = styled.h1`
 const Home = () => {
   return (
     <MainWrapper>
-      <Heading>My Todo App</Heading>
+      <Heading>Document list</Heading>
       <AddDoc />
       <ListDoc />
     </MainWrapper>

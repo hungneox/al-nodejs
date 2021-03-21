@@ -30,18 +30,24 @@ router.post('/docs', (req, res, next) => {
 });
 
 router.put('/docs/:id', async (req, res, next) => {
-  try {
-    return success(res, docs);
-  } catch (err) {
-    next({ status: 400, message: 'failed to update docs' });
-  }
+  const { author, content } = req.body;
+  const { id } = req.params;
+  db.run(`UPDATE docs set author=?, content=? WHERE id=?`, [author, content, id], function (error) {
+    if (error) {
+      next({ status: 400, message: 'failed to update docs' });
+    }
+  });
+  res.send({ content });
 });
 
 router.delete('/docs/:id', async (req, res, next) => {
-  try {
-    return success(res, 'docs deleted!');
-  } catch (err) {
-    next({ status: 400, message: 'failed to delete docs' });
-  }
+  const { id } = req.params;
+
+  db.run(`DELETE FROM docs WHERE id = ?`, [id], function (err) {
+    if (err) {
+      next({ status: 400, message: 'failed to delete docs' });
+    }
+  });
+  res.send('OK');
 });
 export default router;

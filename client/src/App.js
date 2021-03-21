@@ -1,11 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import { CssBaseline, withStyles } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import createSagaMiddleware from 'redux-saga';
 
 import AppHeader from './components/AppHeader';
 import Home from './pages/Home';
+
 import mySaga from './sagas.js';
 import rootReducer from './reducers';
 
@@ -28,7 +30,9 @@ const App = ({ classes }) => (
     <CssBaseline />
     <AppHeader />
     <main className={classes.main}>
-      <Home />
+      <Switch>
+        <Route exact path='/' component={Home} />
+      </Switch>
     </main>
   </Provider>
 );
