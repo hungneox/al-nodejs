@@ -6,7 +6,7 @@ const db = new sqlite3.Database(db_name, (err) => {
   if (err) {
     return console.error(err.message);
   }
-  console.log("Successful connection to the database 'apptest.db'");
+  console.log("Successful connection to the database 'alphasense.db'");
 });
 
 export default db;

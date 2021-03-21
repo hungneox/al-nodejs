@@ -9,13 +9,16 @@ class ListDoc extends Component {
     this.props.fetchActions();
   }
   render() {
-    let { actions } = this.props.docs;
+    let { actions } = this.props.docs || [];
+    if (!actions || actions.length < 1) {
+      return <h2>Empty list!</h2>;
+    }
     return actions.map((act) => <DocItem key={act.id} id={act.id} text={act.content} />);
   }
 }
 
 const mapStateToProps = (state) => ({
-    docs: state.docs,
+  docs: state.docs,
 });
 
 const mapDispatchToProps = (dispatch) => {

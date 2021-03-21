@@ -17,7 +17,7 @@ function fetchActionsFromApi() {
 }
 
 function addActionToDatabase(text) {
-  return axios.post(`${API_SERVER}/api/docs`, { action: text });
+  return axios.post(`${API_SERVER}/api/docs`, { content: text });
 }
 
 function deleteActionFromDatabase(id) {

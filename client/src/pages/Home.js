@@ -11,14 +11,14 @@ const MainWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledHeading = styled.h1`
-  color: #fff;
+const Heading = styled.h1`
+  color: #000;
 `;
 
 const Home = () => {
   return (
     <MainWrapper>
-      <StyledHeading>My Todo App</StyledHeading>
+      <Heading>My Todo App</Heading>
       <AddDoc />
       <ListDoc />
     </MainWrapper>
