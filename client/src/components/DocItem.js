@@ -34,11 +34,13 @@ const StyledButton = styled.button`
 
 class DocItem extends Component {
   render() {
-    let { text, id } = this.props;
+    let { id, author, content } = this.props;
     return (
       <ItemWrapper>
         <StyledCheckbox type='checkbox' />
-        <StyledText>{text}</StyledText>
+        <StyledText>
+          {content} - {author}
+        </StyledText>
         <StyledButton onClick={() => this.props.delete_action(id)}>Delete</StyledButton>
       </ItemWrapper>
     );

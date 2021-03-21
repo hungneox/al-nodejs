@@ -13,7 +13,7 @@ class ListDoc extends Component {
     if (!actions || actions.length < 1) {
       return <h2>Empty list!</h2>;
     }
-    return actions.map((act) => <DocItem key={act.id} id={act.id} text={act.content} />);
+    return actions.map((act) => <DocItem key={act.id} {...act} />);
   }
 }
 
