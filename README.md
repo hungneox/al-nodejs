@@ -1,4 +1,4 @@
-# alpha-sense home assignment
+# al home assignment
 
 # Server
 
